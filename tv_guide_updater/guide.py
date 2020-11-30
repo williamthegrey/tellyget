@@ -1,8 +1,10 @@
+import json
+
 import re
 from bs4 import BeautifulSoup
 
 
-class ChannelList:
+class Guide:
     def __init__(self, session, base_url, get_channel_list_data):
         self.session = session
         self.base_url = base_url
@@ -26,3 +28,18 @@ class ChannelList:
                 channel[key] = value
             channels.append(channel)
         return channels
+
+    def get_schedules(self, channels):
+        schedules = []
+        for channel in channels:
+            schedule = self.get_schedule(channel['ChannelID'])
+            schedules.append(schedule)
+        return schedules
+
+    def get_schedule(self, channel_id):
+        params = {'channelId': channel_id}
+        response = self.session.get(self.base_url + '/EPG/jsp/liveplay_30/en/getTvodData.jsp', params=params)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        script = soup.find_all('script', string=re.compile('parent.jsonBackLookStr'))[0].string
+        match = re.search(r'parent.jsonBackLookStr\s*=\s*(.+?);', script, re.MULTILINE)
+        return json.loads(match.group(1))

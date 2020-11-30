@@ -1,7 +1,8 @@
-import pycurl
-import pycurl_requests as requests
 import re
+import requests
+import socket
 from bs4 import BeautifulSoup
+from requests_toolbelt.adapters import socket_options
 from urllib.parse import urlparse
 from urllib.parse import urlunparse
 
@@ -23,11 +24,12 @@ class Auth:
 
     def get_session(self):
         session = requests.Session()
-        session.curl.setopt(pycurl.INTERFACE, self.config['device']['iptv_interface'])
-        session.curl.setopt(pycurl.COOKIEFILE, 'cookies.txt')
-        session.curl.setopt(pycurl.COOKIEJAR, 'cookies.txt')
+        options = [(socket.SOL_SOCKET, socket.SO_BINDTODEVICE, self.config['device']['iptv_interface'].encode())]
+        adapter = socket_options.SocketOptionsAdapter(socket_options=options)
+        session.mount("http://", adapter)
         session.headers = {
-            'User-Agent': 'Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/534.0 (KHTML, like Gecko)'}
+            'User-Agent': 'Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/534.0 (KHTML, like Gecko)',
+        }
         return session
 
     def get_base_url(self):
