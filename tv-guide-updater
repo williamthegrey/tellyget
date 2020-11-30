@@ -1,9 +1,12 @@
 #!/usr/bin/python
 
+import json
+
 import configparser
 import netifaces
 
 from tv_guide_updater.auth import Auth
+from tv_guide_updater.channel_list import ChannelList
 
 
 def get_config():
@@ -16,6 +19,13 @@ def get_config():
     return config
 
 
-if __name__ == '__main__':
+def main():
     auth = Auth(get_config())
     auth.authenticate()
+    channel_list = ChannelList(auth.session, auth.base_url, auth.get_channel_list_data)
+    channels = channel_list.get_channels()
+    print(json.dumps(channels, ensure_ascii=False, indent=4))
+
+
+if __name__ == '__main__':
+    main()

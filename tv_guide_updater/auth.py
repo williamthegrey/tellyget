@@ -13,13 +13,13 @@ class Auth:
         self.config = config
         self.session = None
         self.base_url = ''
+        self.get_channel_list_data = None
 
     def authenticate(self):
         self.session = self.get_session()
         self.base_url = self.get_base_url()
         print('base_url: ' + self.base_url)
-        cookies = self.login()
-        print('cookies: ' + cookies)
+        self.get_channel_list_data = self.login()
 
     def get_session(self):
         session = requests.Session()
@@ -68,7 +68,13 @@ class Auth:
             'VIP': ''
         }
         response = self.session.post(self.base_url + '/EPG/jsp/ValidAuthenticationHWCTC.jsp', data=data)
-        return self.get_cookies_from_response(response)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        get_channel_list_data = {}
+        for input_tag in soup.form.find_all('input'):
+            key = input_tag['name']
+            value = input_tag['value']
+            get_channel_list_data[key] = value
+        return get_channel_list_data
 
     def get_token(self):
         data = {'UserID': self.config['auth']['user_id'], 'VIP': ''}
@@ -77,7 +83,3 @@ class Auth:
         script = soup.find_all('script', string=re.compile('document.authform.userToken.value'))[0].string
         match = re.search(r'document.authform.userToken.value\s*=\s*\"(.+?)\"', script, re.MULTILINE)
         return match.group(1)
-
-    @staticmethod
-    def get_cookies_from_response(response):
-        return response.headers.get('Set-Cookie')
