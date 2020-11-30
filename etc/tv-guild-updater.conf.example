@@ -1,0 +1,10 @@
+[auth]
+auth_url = http://000.000.000.000:00000/EDS/jsp/AuthenticationURL
+user_id = XXXXXXXXXX@ITV
+net_user_id = XXXXXXXXXX@iptv.gx
+encryption_key = 00000000
+
+[device]
+stb_id = 00000000000000000000000000000000
+stb_mac = 00:00:00:00:00:00
+iptv_interface = eth0

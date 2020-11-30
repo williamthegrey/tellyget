@@ -1,0 +1,21 @@
+#!/usr/bin/python
+
+import configparser
+import netifaces
+
+from tv_guide_updater.auth import Auth
+
+
+def get_config():
+    config = configparser.ConfigParser()
+    config.read('etc/tv-guild-updater.conf')
+    iptv_interface = config['device']['iptv_interface']
+    iptv_ip = netifaces.ifaddresses(iptv_interface)[netifaces.AF_INET][0]['addr']
+    print('iptv_ip: ' + iptv_ip)
+    config['device']['iptv_ip'] = iptv_ip
+    return config
+
+
+if __name__ == '__main__':
+    auth = Auth(get_config())
+    auth.authenticate()
