@@ -12,6 +12,8 @@ class Guide:
         self.session = session
         self.base_url = base_url
         self.get_channels_data = get_channels_data
+        self.channel_filters = self.config['guide']['channel_filters'].encode('unicode_escape')
+        self.channel_filters = json.loads(self.channel_filters)
 
     def get_channels(self):
         response = self.session.post(self.base_url + '/EPG/jsp/getchannellistHWCTC.jsp', data=self.get_channels_data)
@@ -28,8 +30,16 @@ class Guide:
                 value = pair[1]
                 value = value[1:len(value) - 1]
                 channel[key] = value
-            channels.append(channel)
+            if not self.filter_channel(channel):
+                channels.append(channel)
         return channels
+
+    def filter_channel(self, channel):
+        for channel_filter in self.channel_filters:
+            match = re.search(channel_filter, channel['ChannelName'])
+            if match:
+                return True
+        return False
 
     def get_playlist(self, channels):
         content = '#EXTM3U\n'

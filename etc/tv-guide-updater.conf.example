@@ -13,3 +13,4 @@ iptv_interface = eth0
 channel_url_prefix = http://000.000.000.000:0000/xxx/
 playlist_path = /etc/tv-guide-updater/playlist.m3u
 xmltv_path = /etc/tv-guide-updater/xmltv.xml
+channel_filters = ["^\d+$", "单音轨", "画中画", "购物", "体验"]
