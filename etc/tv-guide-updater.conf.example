@@ -1,0 +1,15 @@
+[auth]
+auth_url = http://000.000.000.000:0000/EDS/jsp/AuthenticationURL
+user_id = XXXXXXXXXX@ITV
+net_user_id = XXXXXXXXXX@iptv.gx
+encryption_key = 00000000
+
+[device]
+stb_id = 00000000000000000000000000000000
+stb_mac = 00:00:00:00:00:00
+iptv_interface = eth0
+
+[guide]
+channel_url_prefix = http://000.000.000.000:0000/xxx/
+playlist_path = /etc/tv-guide-updater/playlist.m3u
+xmltv_path = /etc/tv-guide-updater/xmltv.xml

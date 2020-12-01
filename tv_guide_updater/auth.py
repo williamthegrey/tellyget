@@ -3,8 +3,7 @@ import requests
 import socket
 from bs4 import BeautifulSoup
 from requests_toolbelt.adapters import socket_options
-from urllib.parse import urlparse
-from urllib.parse import urlunparse
+from urllib.parse import urlunparse, urlparse
 
 from tv_guide_updater.utils.authenticator import Authenticator
 
@@ -14,13 +13,13 @@ class Auth:
         self.config = config
         self.session = None
         self.base_url = ''
-        self.get_channel_list_data = None
+        self.get_channels_data = None
 
     def authenticate(self):
         self.session = self.get_session()
         self.base_url = self.get_base_url()
         print('base_url: ' + self.base_url)
-        self.get_channel_list_data = self.login()
+        self.get_channels_data = self.login()
 
     def get_session(self):
         session = requests.Session()
