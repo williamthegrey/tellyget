@@ -39,7 +39,6 @@ class Guide:
         print(f'Filtered {filtered_channels} channels')
         removed_sd_candidate_channels = self.remove_sd_candidate_channels(channels)
         print(f'Removed {removed_sd_candidate_channels} SD candidate channels')
-        print(f'Finally {len(channels)} channels left')
         return channels
 
     def match_channel_filters(self, channel):
@@ -82,12 +81,19 @@ class Guide:
 
     def get_programmes(self, channels):
         programmes = []
+        empty_programme_channels = []
         for channel in channels:
             channel_id = channel['ChannelID']
             schedule = self.get_schedule(channel_id)
             programmes_for_schedule = Guide.get_programmes_for_schedule(schedule)
             programmes.extend(programmes_for_schedule)
-            print(f'Found {len(programmes_for_schedule)} programmes for channel {channel_id}')
+            programme_count = len(programmes_for_schedule)
+            print(f'Found {programme_count} programmes for channel {channel_id}')
+            if programme_count == 0:
+                empty_programme_channels.append(channel)
+        self.remove_empty_programme_channels(channels, empty_programme_channels)
+        print(f'Removed {len(empty_programme_channels)} empty programme channels')
+        print(f'Finally {len(channels)} channels left')
         return programmes
 
     def get_schedule(self, channel_id):
@@ -105,6 +111,11 @@ class Guide:
         for schedule_by_day in schedules_by_day:
             programmes.extend(schedule_by_day)
         return programmes
+
+    def remove_empty_programme_channels(self, channels, empty_programme_channels):
+        if not self.config['guide'].getboolean('remove_empty_programme_channels'):
+            return
+        channels[:] = [channel for channel in channels if channel not in empty_programme_channels]
 
     def get_xmltv(self, channels, programmes):
         doc = minidom.Document()

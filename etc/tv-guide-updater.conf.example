@@ -15,4 +15,5 @@ playlist_path = /etc/tv-guide-updater/playlist.m3u
 xmltv_path = /etc/tv-guide-updater/xmltv.xml
 channel_filters = ["^\d+$", "单音轨", "画中画", "购物", "体验"]
 remove_sd_candidate_channels = True
+remove_empty_programme_channels = False
 programme_cleanup = True
