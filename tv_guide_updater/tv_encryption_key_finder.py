@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 import sys
 
 import datetime
@@ -52,7 +50,3 @@ def main():
     find_encryption_key(authenticator, find_all)
     end = datetime.datetime.now()
     print(f'Time used: {end - start}')
-
-
-if __name__ == '__main__':
-    main()

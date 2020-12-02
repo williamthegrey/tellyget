@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 import configparser
 import netifaces
 
@@ -31,7 +29,3 @@ def main():
     guide.save_playlist(playlist)
     xmltv = guide.get_xmltv(channels, programmes)
     guide.save_xmltv(xmltv)
-
-
-if __name__ == '__main__':
-    main()
