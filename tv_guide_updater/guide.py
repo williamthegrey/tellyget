@@ -19,7 +19,9 @@ class Guide:
         response = self.session.post(self.base_url + '/EPG/jsp/getchannellistHWCTC.jsp', data=self.get_channels_data)
         soup = BeautifulSoup(response.text, 'html.parser')
         scripts = soup.find_all('script', string=re.compile('ChannelID=".+?"'))
+        print(f'Found {len(scripts)} channels')
         channels = []
+        filtered_channels = 0
         for script in scripts:
             match = re.search(r'Authentication.CTCSetConfig\(\'Channel\',\'(.+?)\'\)', script.string, re.MULTILINE)
             channel_params = match.group(1)
@@ -30,14 +32,35 @@ class Guide:
                 value = pair[1]
                 value = value[1:len(value) - 1]
                 channel[key] = value
-            if not self.filter_channel(channel):
+            if self.match_channel_filters(channel):
+                filtered_channels += 1
+            else:
                 channels.append(channel)
+        print(f'Filtered {filtered_channels} channels')
+        removed_sd_candidate_channels = self.remove_sd_candidate_channels(channels)
+        print(f'Removed {removed_sd_candidate_channels} SD candidate channels')
+        print(f'Finally {len(channels)} channels left')
         return channels
 
-    def filter_channel(self, channel):
+    def match_channel_filters(self, channel):
         for channel_filter in self.channel_filters:
             match = re.search(channel_filter, channel['ChannelName'])
             if match:
+                return True
+        return False
+
+    def remove_sd_candidate_channels(self, channels):
+        if not self.config['guide'].getboolean('remove_sd_candidate_channels'):
+            return 0
+        channels_count = len(channels)
+        channels[:] = [channel for channel in channels if not Guide.is_sd_candidate_channel(channel, channels)]
+        new_channels_count = len(channels)
+        return channels_count - new_channels_count
+
+    @staticmethod
+    def is_sd_candidate_channel(channel, channels):
+        for c in channels:
+            if c['ChannelName'] == channel['ChannelName'] + '高清':
                 return True
         return False
 

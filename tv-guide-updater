@@ -25,7 +25,6 @@ def main():
     guide = Guide(config, auth.session, auth.base_url, auth.get_channels_data)
 
     channels = guide.get_channels()
-    print(f'Found {len(channels)} channels')
     playlist = guide.get_playlist(channels)
     guide.save_playlist(playlist)
 
