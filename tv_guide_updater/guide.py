@@ -83,14 +83,13 @@ class Guide:
             programmes.extend(schedule_by_day)
         return programmes
 
-    @staticmethod
-    def get_xmltv(channels, programmes):
+    def get_xmltv(self, channels, programmes):
         doc = minidom.Document()
 
         tv_node = doc.createElement('tv')
         tv_node.setAttribute('generator-info-name', 'tv-guide-updater')
         Guide.append_channels(doc, tv_node, channels)
-        Guide.append_programmes(doc, tv_node, programmes)
+        self.append_programmes(doc, tv_node, programmes)
         doc.appendChild(tv_node)
 
         return doc.toprettyxml(encoding='UTF-8').decode()
@@ -107,8 +106,7 @@ class Guide:
 
             tv_node.appendChild(channel_node)
 
-    @staticmethod
-    def append_programmes(doc, tv_node, programmes):
+    def append_programmes(self, doc, tv_node, programmes):
         for programme in programmes:
             programme_node = doc.createElement('programme')
             programme_node.setAttribute('channel', programme['channelId'])
@@ -117,7 +115,11 @@ class Guide:
 
             title_node = doc.createElement('title')
             title_node.setAttribute('lang', 'zh')
-            title_node.appendChild(doc.createTextNode(programme['programName']))
+            programme_name = programme['programName']
+            if self.config['guide'].getboolean('programme_cleanup'):
+                # noinspection SpellCheckingInspection
+                programme_name = programme_name.replace('\ufffd', '')
+            title_node.appendChild(doc.createTextNode(programme_name))
             programme_node.appendChild(title_node)
 
             tv_node.appendChild(programme_node)
