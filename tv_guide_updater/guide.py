@@ -150,7 +150,7 @@ class Guide:
             title_node = doc.createElement('title')
             title_node.setAttribute('lang', 'zh')
             programme_name = programme['programName']
-            if self.config['guide'].getboolean('programme_cleanup'):
+            if self.config['guide'].getboolean('programme_name_cleanup'):
                 # noinspection SpellCheckingInspection
                 programme_name = programme_name.replace('\ufffd', '')
             title_node.appendChild(doc.createTextNode(programme_name))
