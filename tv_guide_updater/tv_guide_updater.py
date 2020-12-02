@@ -1,3 +1,5 @@
+import sys
+
 import configparser
 import netifaces
 
@@ -5,9 +7,15 @@ from tv_guide_updater.auth import Auth
 from tv_guide_updater.guide import Guide
 
 
-def get_config():
+def usage():
+    print('Usage:')
+    print('\t\ttv-guide-updater -h')
+    print('\t\ttv-guide-updater <config_file>')
+
+
+def get_config(file):
     config = configparser.ConfigParser()
-    config.read('etc/tv-guide-updater.conf')
+    config.read(file)
     iptv_interface = config['device']['iptv_interface']
     iptv_ip = netifaces.ifaddresses(iptv_interface)[netifaces.AF_INET][0]['addr']
     print('iptv_ip: ' + iptv_ip)
@@ -16,7 +24,15 @@ def get_config():
 
 
 def main():
-    config = get_config()
+    if len(sys.argv) != 2:
+        usage()
+        sys.exit(1)
+
+    if sys.argv[1] == '-h':
+        usage()
+        sys.exit()
+
+    config = get_config(sys.argv[1])
     auth = Auth(config)
     auth.authenticate()
 
