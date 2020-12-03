@@ -1,6 +1,7 @@
 import json
 from xml.dom import minidom
 
+import datetime
 import os
 import re
 from bs4 import BeautifulSoup
@@ -107,10 +108,29 @@ class Guide:
     @staticmethod
     def get_programmes_for_schedule(schedule):
         programmes = []
-        schedules_by_day = schedule[1]
-        for schedule_by_day in schedules_by_day:
-            programmes.extend(schedule_by_day)
+        schedules_of_day = schedule[1]
+        for schedule_of_day in schedules_of_day:
+            Guide.fix_last_programme_of_day(schedule_of_day)
+            programmes.extend(schedule_of_day)
         return programmes
+
+    @staticmethod
+    def fix_last_programme_of_day(schedule_of_day):
+        programme_count = len(schedule_of_day)
+        if programme_count == 0:
+            return
+
+        last_programme_of_day = schedule_of_day[programme_count - 1]
+        start = last_programme_of_day['beginTimeFormat']
+        end = last_programme_of_day['endTimeFormat']
+        date_time_format = '%Y%m%d%H%M%S'
+        start = datetime.datetime.strptime(start, date_time_format)
+        end = datetime.datetime.strptime(end, date_time_format)
+        if start <= end:
+            return
+
+        end += datetime.timedelta(days=1)
+        last_programme_of_day['endTimeFormat'] = end.strftime(date_time_format)
 
     def remove_empty_programme_channels(self, channels, empty_programme_channels):
         if not self.config['guide'].getboolean('remove_empty_programme_channels'):
