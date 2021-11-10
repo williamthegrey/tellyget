@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="ce1c98fc-ba6a-4680-883b-8f1f3ee58095" name="moonlight.lan">
-        <fileTransfer accessType="SFTP" host="moonlight.lan" port="22" sshConfigId="f9a2c02e-3ab8-4fe6-b6c3-5d90ad8201c7" sshConfig="moonlight.lan" authAgent="true">
+        <fileTransfer accessType="SFTP" host="moonlight.lan" port="22" sshConfigId="f9a2c02e-3ab8-4fe6-b6c3-5d90ad8201c7" sshConfig="moonlight.lan" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

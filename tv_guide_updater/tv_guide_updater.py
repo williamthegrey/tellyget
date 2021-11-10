@@ -5,6 +5,7 @@ import netifaces
 
 from tv_guide_updater.auth import Auth
 from tv_guide_updater.guide import Guide
+from tv_guide_updater.utils import command
 
 
 def usage():
@@ -16,11 +17,23 @@ def usage():
 def get_config(file):
     config = configparser.ConfigParser()
     config.read(file)
+    bring_up_iptv_logical_interface(config)
+    get_iptv_ip(config)
+    return config
+
+
+def bring_up_iptv_logical_interface(config):
+    iptv_logical_interface = config['device']['iptv_logical_interface']
+    print(f'Bringing up logical interface: {iptv_logical_interface}')
+    output, error = command.execute(f'ifup {iptv_logical_interface}')
+    print(output, end='')
+
+
+def get_iptv_ip(config):
     iptv_interface = config['device']['iptv_interface']
     iptv_ip = netifaces.ifaddresses(iptv_interface)[netifaces.AF_INET][0]['addr']
     print('iptv_ip: ' + iptv_ip)
     config['device']['iptv_ip'] = iptv_ip
-    return config
 
 
 def main():
