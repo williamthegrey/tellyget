@@ -47,26 +47,26 @@ class Auth:
                                                                                    self.config['device']['stb_mac'])
         data = {
             'UserID': self.config['auth']['user_id'],
-            'Lang': '1',
-            'SupportHD': '1',
+            'Lang': self.config['device']['lang'],
+            'SupportHD': self.config['device']['support_hd'],
             'NetUserID': self.config['auth']['net_user_id'],
             'Authenticator': authenticator,
-            'STBType': 'EC6108V9U_pub_sccdx',
-            'STBVersion': 'HWV207013P0000',
-            'conntype': '4',
+            'STBType': self.config['device']['stb_type'],
+            'STBVersion': self.config['device']['stb_version'],
+            'conntype': self.config['device']['conn_type'],
             'STBID': self.config['device']['stb_id'],
-            'templateName': 'yszhibo',
-            'areaId': '10105',
+            'templateName': self.config['device']['template_name'],
+            'areaId': self.config['device']['area_id'],
             'userToken': token,
-            'userGroupId': '1',
-            'productPackageId': '',
+            'userGroupId': self.config['auth']['user_group_id'],
+            'productPackageId': self.config['device']['product_package_id'],
             'mac': self.config['device']['stb_mac'],
-            'UserField': '2',
-            'SoftwareVersion': 'V100R003C88LSCD07B013',
-            'IsSmartStb': '0',
-            'desktopId': '',
-            'stbmaker': '',
-            'VIP': ''
+            'UserField': self.config['auth']['user_field'],
+            'SoftwareVersion': self.config['device']['software_version'],
+            'IsSmartStb': self.config['device']['is_smart_stb'],
+            'desktopId': self.config['device']['desktop_id'],
+            'stbmaker': self.config['device']['stb_maker'],
+            'VIP': self.config['auth']['vip']
         }
         response = self.session.post(self.base_url + '/EPG/jsp/ValidAuthenticationHWCTC.jsp', data=data)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -78,7 +78,7 @@ class Auth:
         return get_channel_list_data
 
     def get_token(self):
-        data = {'UserID': self.config['auth']['user_id'], 'VIP': ''}
+        data = {'UserID': self.config['auth']['user_id'], 'VIP': self.config['auth']['vip']}
         response = self.session.post(self.base_url + '/EPG/jsp/authLoginHWCTC.jsp', data=data)
         soup = BeautifulSoup(response.text, 'html.parser')
         script = soup.find_all('script', string=re.compile('document.authform.userToken.value'))[0].string

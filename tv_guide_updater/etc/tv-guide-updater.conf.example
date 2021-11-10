@@ -3,12 +3,27 @@ auth_url = http://000.000.000.000:0000/EDS/jsp/AuthenticationURL
 user_id = XXXXXXXXXX@ITV
 net_user_id = XXXXXXXXXX@iptv.gx
 encryption_key = 00000000
+user_group_id = 1
+user_field = 2
+vip =
 
 [device]
-stb_id = 00000000000000000000000000000000
-stb_mac = 00:00:00:00:00:00
 iptv_logical_interface = XXXX
 iptv_interface = eth0
+stb_id = 00000000000000000000000000000000
+stb_mac = 00:00:00:00:00:00
+stb_type = EC6108V9U_pub_sccdx
+stb_version = HWV207013P0000
+software_version = V100R003C88LSCD07B013
+is_smart_stb = 0
+support_hd = 1
+conn_type = 4
+template_name = yszhibo
+area_id = 10105
+lang = 1
+product_package_id =
+desktop_id =
+stb_maker =
 
 [guide]
 channel_url_prefix = http://000.000.000.000:0000/xxx/
