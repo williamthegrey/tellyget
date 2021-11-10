@@ -1,4 +1,5 @@
 import sys
+import time
 
 import configparser
 import netifaces
@@ -27,6 +28,7 @@ def bring_up_iptv_logical_interface(config):
     print(f'Bringing up logical interface: {iptv_logical_interface}')
     output, error = command.execute(f'ifup {iptv_logical_interface}')
     print(output, end='')
+    time.sleep(10)
 
 
 def get_iptv_ip(config):
