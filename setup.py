@@ -20,8 +20,5 @@ setuptools.setup(
             'tv-config-generator=tv_guide_updater.tv_config_generator:main',
             'tv-encryption-key-finder=tv_guide_updater.tv_encryption_key_finder:main'
         ]
-    },
-    package_data={
-        'tv_guide_updater': ['etc/tv-guide-updater.conf.example']
     }
 )
