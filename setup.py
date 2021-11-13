@@ -17,6 +17,7 @@ setuptools.setup(
     entry_points={
         'console_scripts': [
             'tv-guide-updater=tv_guide_updater.tv_guide_updater:main',
+            'tv-config-generator=tv_guide_updater.tv_config_generator:main',
             'tv-encryption-key-finder=tv_guide_updater.tv_encryption_key_finder:main'
         ]
     },

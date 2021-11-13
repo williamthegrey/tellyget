@@ -26,8 +26,8 @@ def get_config(file):
 def bring_up_iptv_logical_interface(config):
     iptv_logical_interface = config['device']['iptv_logical_interface']
     print(f'Bringing up logical interface: {iptv_logical_interface}')
-    output, error = command.execute(f'ifup {iptv_logical_interface}')
-    print(output, end='')
+    stdout = command.execute('ifup', iptv_logical_interface)
+    print(stdout, end='')
     time.sleep(10)
 
 

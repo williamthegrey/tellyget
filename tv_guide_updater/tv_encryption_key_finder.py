@@ -11,7 +11,7 @@ def usage():
     print('\t\ttv-encryption-key-finder <authenticator> [--all]')
 
 
-def find_encryption_key(authenticator, find_all):
+def find_encryption_keys(authenticator, find_all=False):
     keys = []
     print('Searching for encryption keys in 00000000 - 99999999')
     for num in range(0, 100000000):
@@ -26,6 +26,7 @@ def find_encryption_key(authenticator, find_all):
         except:
             pass
     print(f'Found {len(keys)} keys:\n{keys}')
+    return keys
 
 
 def main():
@@ -47,6 +48,6 @@ def main():
         sys.exit(1)
 
     start = datetime.datetime.now()
-    find_encryption_key(authenticator, find_all)
+    find_encryption_keys(authenticator, find_all)
     end = datetime.datetime.now()
     print(f'Time used: {end - start}')
