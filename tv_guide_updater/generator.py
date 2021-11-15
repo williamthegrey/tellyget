@@ -74,7 +74,7 @@ class Generator:
 
         config['guide'] = {}
 
-        config['guide']['channel_url_prefix'] = 'http://000.000.000.000:0000/xxx/'
+        config['guide']['channel_url_prefix'] = 'http://000.000.000.000:4022/udp/'
         config['guide']['playlist_path'] = '/etc/tv-guide-updater/playlist.m3u'
         config['guide']['xmltv_path'] = '/etc/tv-guide-updater/xmltv.xml'
         config['guide']['channel_filters'] = '["^\d+$"]'
@@ -101,4 +101,5 @@ class Generator:
                f'proto: dhcp\n' \
                f'macaddr: {self.stb_mac}\n' \
                f'hostname: {hostname}\n' \
-               f'vendorid: {vendor_id}'
+               f'vendorid: {vendor_id}\n' \
+               f'metric: 100'
