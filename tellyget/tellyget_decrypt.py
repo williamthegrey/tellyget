@@ -1,6 +1,5 @@
-import sys
-
 import datetime
+import sys
 
 from tellyget.utils.cipher import Cipher
 
@@ -11,21 +10,23 @@ def usage():
     print('\t\ttellyget-decrypt <authenticator> [--all]')
 
 
-def find_encryption_keys(authenticator, find_all=False):
+def find_encryption_keys(authenticator, find_all=False, debug=False):
     keys = []
-    print('Searching for encryption keys in 00000000 - 99999999')
+    if debug:
+        print('Searching for encryption keys in 00000000 - 99999999')
     for num in range(0, 100000000):
         key = f'{num:08}'
-        # noinspection PyBroadException
         try:
             plain_text = Cipher(key).decrypt(authenticator)
-            print(f'Found key: {key} Decrypted text: {plain_text}')
+            if debug:
+                print(f'Found key: {key} Decrypted text: {plain_text}')
             keys.append(key)
             if not find_all:
                 break
-        except:
+        except ValueError:
             pass
-    print(f'Found {len(keys)} keys:\n{keys}')
+    if debug:
+        print(f'Found {len(keys)} keys')
     return keys
 
 
@@ -48,6 +49,6 @@ def main():
         sys.exit(1)
 
     start = datetime.datetime.now()
-    find_encryption_keys(authenticator, find_all)
+    find_encryption_keys(authenticator, find_all=find_all, debug=True)
     end = datetime.datetime.now()
     print(f'Time used: {end - start}')
