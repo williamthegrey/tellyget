@@ -17,10 +17,12 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     url='https://github.com/williamthegrey/tellyget',
     packages=setuptools.find_packages(),
+    license='GPLv3',
     classifiers=[
         'Programming Language :: Python :: 3',
         'Operating System :: OS Independent',
-        'Topic :: Multimedia :: Video'
+        'Topic :: Multimedia :: Video',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
     ],
     keywords='set-top-box iptv m3u xmltv',
     python_requires='>=3.6',

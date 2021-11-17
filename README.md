@@ -209,3 +209,7 @@ Now you can lock your set-up box in the drawer and enjoy your freedom and your f
 ## Maintainers
 
 [William Lu](https://github.com/williamthegrey)
+
+## License
+
+[GNU General Public License v3.0](LICENSE)
