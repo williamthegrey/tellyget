@@ -88,14 +88,10 @@ On the config machine, you should install this dependency first:
 Currently, tellyget-config and tellyget are always installed together. So, if your config machine and the router are not
 the same machine, you must install them on both of the machines separately.
 
-Use these commands to install TellyGet from source:
+Use this command to install TellyGet from PyPI:
 
 ```shell
-pip3 install build
-git clone https://github.com/williamthegrey/tellyget.git
-cd tellyget
-python3 -m build
-pip3 install dist/*.whl
+pip3 install tellyget
 ```
 
 ### Install Other Applications
