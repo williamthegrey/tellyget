@@ -77,7 +77,7 @@ class Generator:
         config['guide']['channel_url_prefix'] = 'http://000.000.000.000:4022/udp/'
         config['guide']['playlist_path'] = '/etc/tellyget/playlist.m3u'
         config['guide']['xmltv_path'] = '/etc/tellyget/xmltv.xml'
-        config['guide']['channel_filters'] = '["^\d+$"]'
+        config['guide']['channel_filters'] = '["^\d+$"]'  # noqa: W605
         config['guide']['remove_sd_candidate_channels'] = 'True'
         config['guide']['remove_empty_programme_channels'] = 'True'
         config['guide']['programme_name_cleanup'] = 'True'
