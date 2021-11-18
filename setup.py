@@ -20,7 +20,9 @@ setuptools.setup(
     classifiers=[
         'Programming Language :: Python :: 3',
         'Operating System :: OS Independent',
+        'Topic :: Multimedia :: Video'
     ],
+    keywords='set-top-box iptv m3u xmltv',
     python_requires='>=3.6',
     install_requires=['beautifulsoup4', 'netifaces', 'pycryptodome', 'requests-toolbelt'],
     entry_points={
