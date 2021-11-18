@@ -1,9 +1,11 @@
-from pathlib import Path
-
 import setuptools
 
-this_directory = Path(__file__).parent
-long_description = (this_directory / "README.md").read_text()
+long_description = '''# TellyGet
+
+A toolset for fetching and updating m3u playlist and xmltv guide from the IPTV network.
+
+Please visit [TellyGet on GitHub](https://github.com/williamthegrey/tellyget) for detail.
+'''
 
 setuptools.setup(
     name='tellyget',

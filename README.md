@@ -1,6 +1,6 @@
 # TellyGet
 
-A toolset for fetching and updating m3u playlist and xmltv guide from the IPTV network
+A toolset for fetching and updating m3u playlist and xmltv guide from the IPTV network.
 
 ## Background
 
