@@ -141,7 +141,7 @@ class Guide:
         doc = minidom.Document()
 
         tv_node = doc.createElement('tv')
-        tv_node.setAttribute('generator-info-name', 'tv-guide-updater')
+        tv_node.setAttribute('generator-info-name', 'tellyget')
         Guide.append_channels(doc, tv_node, channels)
         self.append_programmes(doc, tv_node, programmes)
         doc.appendChild(tv_node)

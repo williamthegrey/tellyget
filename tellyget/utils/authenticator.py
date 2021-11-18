@@ -1,4 +1,4 @@
-from tv_guide_updater.utils.cipher import Cipher
+from tellyget.utils.cipher import Cipher
 
 
 class Authenticator:

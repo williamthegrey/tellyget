@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from requests_toolbelt.adapters import socket_options
 from urllib.parse import urlunparse, urlparse
 
-from tv_guide_updater.utils.authenticator import Authenticator
+from tellyget.utils.authenticator import Authenticator
 
 
 class Auth:

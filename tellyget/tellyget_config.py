@@ -1,12 +1,12 @@
 import sys
 
-from tv_guide_updater.generator import Generator
+from tellyget.generator import Generator
 
 
 def usage():
     print('Usage:')
-    print('\t\ttv-config-generator -h')
-    print('\t\ttv-config-generator <pcap_file> <stb_mac> <config_file>')
+    print('\t\ttellyget-config -h')
+    print('\t\ttellyget-config <pcap_file> <stb_mac> <config_file>')
 
 
 def main():

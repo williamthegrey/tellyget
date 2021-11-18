@@ -4,15 +4,15 @@ import time
 import configparser
 import netifaces
 
-from tv_guide_updater.auth import Auth
-from tv_guide_updater.guide import Guide
-from tv_guide_updater.utils import command
+from tellyget.auth import Auth
+from tellyget.guide import Guide
+from tellyget.utils import command
 
 
 def usage():
     print('Usage:')
-    print('\t\ttv-guide-updater -h')
-    print('\t\ttv-guide-updater <config_file>')
+    print('\t\ttellyget -h')
+    print('\t\ttellyget <config_file>')
 
 
 def get_config(file):

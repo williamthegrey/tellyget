@@ -5,8 +5,8 @@
       <paths name="moonlight.lan">
         <serverdata>
           <mappings>
-            <mapping deploy="/root/Workspace/tv-guide-updater" local="$PROJECT_DIR$" web="/" />
-            <mapping deploy="/etc/tv-guide-updater" local="$PROJECT_DIR$/etc" web="/" />
+            <mapping deploy="/root/Workspace/tellyget" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/etc/tellyget" local="$PROJECT_DIR$/etc" web="/" />
           </mappings>
         </serverdata>
       </paths>

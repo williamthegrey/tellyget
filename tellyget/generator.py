@@ -1,8 +1,8 @@
 import configparser
 from urllib.parse import parse_qs, unquote
 
-from tv_guide_updater.utils.tshark import TShark
-from tv_guide_updater.tv_encryption_key_finder import find_encryption_keys
+from tellyget.utils.tshark import TShark
+from tellyget.tellyget_decrypt import find_encryption_keys
 
 
 class Generator:
@@ -75,8 +75,8 @@ class Generator:
         config['guide'] = {}
 
         config['guide']['channel_url_prefix'] = 'http://000.000.000.000:4022/udp/'
-        config['guide']['playlist_path'] = '/etc/tv-guide-updater/playlist.m3u'
-        config['guide']['xmltv_path'] = '/etc/tv-guide-updater/xmltv.xml'
+        config['guide']['playlist_path'] = '/etc/tellyget/playlist.m3u'
+        config['guide']['xmltv_path'] = '/etc/tellyget/xmltv.xml'
         config['guide']['channel_filters'] = '["^\d+$"]'
         config['guide']['remove_sd_candidate_channels'] = 'True'
         config['guide']['remove_empty_programme_channels'] = 'True'

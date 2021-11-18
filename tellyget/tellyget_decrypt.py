@@ -2,13 +2,13 @@ import sys
 
 import datetime
 
-from tv_guide_updater.utils.cipher import Cipher
+from tellyget.utils.cipher import Cipher
 
 
 def usage():
     print('Usage:')
-    print('\t\ttv-encryption-key-finder -h')
-    print('\t\ttv-encryption-key-finder <authenticator> [--all]')
+    print('\t\ttellyget-decrypt -h')
+    print('\t\ttellyget-decrypt <authenticator> [--all]')
 
 
 def find_encryption_keys(authenticator, find_all=False):

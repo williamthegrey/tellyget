@@ -1,6 +1,6 @@
 import json
 
-from tv_guide_updater.utils import command
+from tellyget.utils import command
 
 
 class TShark:
