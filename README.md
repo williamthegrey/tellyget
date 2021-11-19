@@ -9,14 +9,14 @@ A toolset for fetching and updating m3u playlist and xmltv guide from the IPTV n
 IPTV set-top boxes are fully controlled by the service providers, and users do not have the freedom to do what they
 want, like:
 
-- Removing unwanted TV channels (e.g., advertising channels and shopping channels)
-- Playback on their favorite media player (e.g., Kodi and Plex) for extra features like:
+- Removing unwanted TV channels (e.g. advertising channels and shopping channels)
+- Playback on their favorite media player (e.g. Kodi and Plex) for extra features like:
     - Stopping parents from getting confused by two remotes (one for set-top box and one for TV), and controlling the
       playback only with the TV remote
     - Time shifting without VIP
     - Recording the programs
     - Playback on multiple TVs at the same time without purchasing extra set-top boxes
-    - Playback on multiple smart devices (e.g., phones, tablets and computers) at the same time
+    - Playback on multiple smart devices (e.g. phones, tablets and computers) at the same time
     - Even playback outside home
 
 And you can achieve all of them above, once you got TellyGet and these applications:
@@ -24,7 +24,7 @@ And you can achieve all of them above, once you got TellyGet and these applicati
 - Wireshark and tshark
 - xTeVe
 - udpxy
-- media players which supports xTeVe (e.g., Kodi and Plex)
+- media players which support xTeVe (e.g. Kodi and Plex)
 
 ### How TellyGet Works
 
@@ -51,7 +51,7 @@ As we can see, tellyget:
 
 - independently runs on a different setup where the set-top box is absent
 - fetches and updating m3u playlist and xmltv guide from the IPTV network
-- Supposed to run regularly (e.g., every day)
+- Supposed to run regularly (e.g. every day)
 
 ## Compatibility
 
@@ -96,11 +96,12 @@ pip3 install tellyget
 
 ### Install Other Applications
 
-On the router, install other applications if you have not:
+On the router, install udpxy if you have not.
 
-- udpxy
+On any machine, install these applications if you have not:
+
 - xTeVe
-- media players which supports xTeVe (e.g., Kodi and Plex)
+- media players which support xTeVe (e.g. Kodi and Plex)
     - If you install Kodi, you also have to install the "PVR IPTV Simple Client" add-on for it
 
 ## Usage
@@ -185,7 +186,7 @@ The cron job above will run at 22:50 every day and write a log.
 
 udpxy is bound to one upstream interface and one downstream interface. You should set the upstream interface to IPTV
 physical network interface by filling in the "source" (Source IP/Interface) field. And you should set the downstream
-interface to your LAN bridge (e.g., br-lan in OpenWrt) by filling in the "bind" (Bind IP/Interface) field.
+interface to your LAN bridge (e.g. br-lan in OpenWrt) by filling in the "bind" (Bind IP/Interface) field.
 
 In order to solve disconnection issue during playback, set the mcsub_renew (multicast subscription renew) value to 180.
 This value works fine for me, but you can try other values.
