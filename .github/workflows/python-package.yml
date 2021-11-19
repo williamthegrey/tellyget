@@ -39,5 +39,5 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
       with:
-        name: teleranger-python${{ matrix.python-version }}
+        name: tellyget-python${{ matrix.python-version }}
         path: dist/
