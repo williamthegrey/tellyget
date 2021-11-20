@@ -4,7 +4,7 @@ long_description = '''# TellyGet
 
 A toolset for fetching and updating m3u playlist and xmltv guide from the IPTV network.
 
-Please visit [TellyGet on GitHub](https://github.com/williamthegrey/tellyget) for detail.
+Please visit [TellyGet on GitHub](https://github.com/williamthegrey/tellyget) for details.
 '''
 
 setuptools.setup(
