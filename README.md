@@ -64,6 +64,7 @@ TellyGet is compatible only with China Telecom as the IPTV service provider.
 TellyGet is currently tested on these set-top boxes:
 
 - 华为悦盒 EC6108V9
+- 创维智能网络机顶盒 E900V21E
 
 ## Hardware Requirements
 
@@ -191,6 +192,11 @@ interface to your LAN bridge (e.g. br-lan in OpenWrt) by filling in the "bind" (
 
 In order to solve the disconnection issue during playback, set the "mcsub_renew" (multicast subscription renew) field to
 a value like 180. This is an empirical value, and you may try other values.
+
+In order for udpxy to receive IGMP traffic, specific firewall rules must be added to the router. If your router is
+running OpenWrt, you can refer
+to [Firewall configuration for udpxy](https://openwrt.org/docs/guide-user/network/wan/udp_multicast#firewall_configuration_for_udpxy)
+.
 
 #### Configure xTeVe
 
