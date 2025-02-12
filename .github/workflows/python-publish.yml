@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - name: Download release assets
       run: |
         gh release download ${{ github.event.release.tag_name }} --dir dist/
