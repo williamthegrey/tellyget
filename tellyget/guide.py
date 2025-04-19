@@ -102,7 +102,7 @@ class Guide:
         response = self.session.get(self.base_url + '/EPG/jsp/liveplay_30/en/getTvodData.jsp', params=params)
         soup = BeautifulSoup(response.text, 'html.parser')
         script = soup.find_all('script', string=re.compile('parent.jsonBackLookStr'))[0].string
-        match = re.search(r'parent.jsonBackLookStr\s*=\s*(.+?);', script, re.MULTILINE)
+        match = re.search(r'parent.jsonBackLookStr\s*=\s*(.+);', script, re.MULTILINE)
         return json.loads(match.group(1))
 
     @staticmethod
